@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sf-nginx
+  namespace: jkkim
+spec:
+  replicas: 3   
+  serviceName : sf-nginx-service
+  podManagementPolicy: Parallel
+  selector:
+    matchLabels:
+      app: webui-sf
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: webui-sf
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.14

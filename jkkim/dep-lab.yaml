@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: dep-mainui
+  namespace : jkkim
+  annotations:
+   kuvernetes.io/change-cause: version 2.2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: main 
+  template:
+    metadata:
+      name: apache
+      labels:
+         app: main
+    spec:
+      containers:
+      - name: httpd
+        image: httpd:2.2

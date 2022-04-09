@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webui-svc
+spec:
+  #clusterIp: 
+  NodePort: 30100
+  selector:
+    app: webui
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

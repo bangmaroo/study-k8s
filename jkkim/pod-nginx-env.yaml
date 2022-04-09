@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-env
+  namespace: jkkim
+spec:
+  containers:
+  - image: nginx:1.19.2
+    name: nginx-pod-env-container
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    env:
+    - name: MYVAR
+      value: "MyNameIsJOOKWANKIM"

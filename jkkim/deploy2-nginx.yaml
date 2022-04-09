@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy2-nginx
+  namespace: jkkim
+  annotations:
+    kubernetes.io/change-cause: version 1.15
+spec:
+  progressDeadlineSeconds: 600  # 롤링업데이트 총 소요시간(초), 초과되면 롤백
+  revisionHistoryLimit: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%         # Initializing 갯수
+      maxUnavailable: 25%   # Terminating 갯수
+    type: RollingUpdate
+  replicas: 10
+  selector:
+    matchLabels:
+      app: webui
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: webui
+    spec:
+      containers:
+      - name: nginx-container
+        image: nginx:1.15
