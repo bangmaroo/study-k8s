@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-example
+# namespace: real
+spec:
+  selector:
+    app: flask-example
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-example
+# namespace: real
+spec:
+  selector:
+    matchLabels:
+      app: flask-example
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: flask-example
+    spec:
+      containers:
+      - name: flask-example
+        image: byeongjokim/flask-example
+        ports:
+        - containerPort: 8080
