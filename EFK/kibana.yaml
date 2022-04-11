@@ -18,6 +18,7 @@ spec:
       containers:
       - name: kibana
         image: elastic/kibana:6.4.0
+        imagePullPolicy: Always
         env:
         - name: SERVER_NAME
           value: kibana.kubenetes.example.com

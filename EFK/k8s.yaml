@@ -32,5 +32,6 @@ spec:
       containers:
       - name: flask-example
         image: byeongjokim/flask-example
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
